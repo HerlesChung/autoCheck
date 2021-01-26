@@ -37,3 +37,4 @@ nohup python -u autoCheck.py >> autoCheck.log 2>&1 &
 ```
 Use the parament u to disable  the output cache of python, otherwise it will not output stdout to the log file. 
 
+__

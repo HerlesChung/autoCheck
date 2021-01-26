@@ -36,12 +36,13 @@ if __name__ == '__main__':
         browser.get("https://stuhealth.jnu.edu.cn/")
         print("get2TheWeb")
         log_name = browser.find_element_by_id("zh")
-        log_name.send_keys("") # 这里输入你的学号
+        log_name.send_keys("")
         pwd = browser.find_element_by_id("passw")
-        pwd.send_keys("") # 这里输入你的账号密码
+        pwd.send_keys("")
         submit = browser.find_element_by_tag_name("button")
         submit.click()
-        time.sleep(3)
+        # You should stay enough time in case of the network flucuation.
+        time.sleep(50)
         print("setAccount")
         browser.switch_to.window(browser.window_handles[-1])
         # phone = browser.find_element_by_id("phone")
