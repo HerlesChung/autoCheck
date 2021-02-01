@@ -6,6 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 import datetime
+import getpass
 
 if __name__ == '__main__':
     chrome_options = webdriver.ChromeOptions()
@@ -13,8 +14,10 @@ if __name__ == '__main__':
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
 
+    account = input("Please input your student id:\n")
+    pwd = getpass.getpass("Please input your pwd:\n")
     print("Loading autoChecking program")
-    while 1:
+    while True:
         # 获取现在时间
         now_time = datetime.datetime.now()
         # 获取明天日期
@@ -25,6 +28,7 @@ if __name__ == '__main__':
         # 获取明天6点时间
         next_time = datetime.datetime.strptime(
             str(next_year) + "-" + str(next_month) + "-" + str(next_day) + " 06:00:00", "%Y-%m-%d %H:%M:%S")
+        print("next time to check:" + str(next_time))
         # 获得sleep时间
         sleep_time = (next_time - now_time).total_seconds()
         print("Start Sleeping")
@@ -36,9 +40,9 @@ if __name__ == '__main__':
         browser.get("https://stuhealth.jnu.edu.cn/")
         print("get2TheWeb")
         log_name = browser.find_element_by_id("zh")
-        log_name.send_keys("")
+        log_name.send_keys(account)
         pwd = browser.find_element_by_id("passw")
-        pwd.send_keys("")
+        pwd.send_keys(pwd)
         submit = browser.find_element_by_tag_name("button")
         submit.click()
         # You should stay enough time in case of the network flucuation.
@@ -50,6 +54,10 @@ if __name__ == '__main__':
         # phone.send_keys(664996211)
         chBox = browser.find_element_by_id(10000)
         chBox.click()
+        # f = open('test,html', 'w')
+        # f.write(browser.page_source.code("gbk", "ignore"))
+        # print("Successfully trackdown the page.")
+        # f.close()
         sbmButton = browser.find_element_by_id("tj")
         sbmButton.click()
         time.sleep(50)
