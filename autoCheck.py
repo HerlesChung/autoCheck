@@ -52,5 +52,6 @@ if __name__ == '__main__':
         chBox.click()
         sbmButton = browser.find_element_by_id("tj")
         sbmButton.click()
+        time.sleep(50)
         print("ok")
         browser.quit()
